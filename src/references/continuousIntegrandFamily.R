@@ -35,8 +35,20 @@ cont <- function(xx, u=rep(0.5, 1, length(xx)), a=rep(5, 1, length(xx)))
   #
   ##########################################################################
   
-  sum <- sum(a * abs(xx-u))
+  if (is.matrix(xx) == FALSE) { 
+    
+    xx <- matrix(xx) 
+    
+  }
+  
+  u=rep( 0.5, 1, ncol(xx) )
+  
+  a=rep(5, ncol(xx)) 
+  
+  sum <- abs(xx-u) %*% a
   
   y <- exp(-sum)
+
+  
   return(y)
 }
